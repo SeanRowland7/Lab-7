@@ -5,7 +5,7 @@
 *
 * <p>Bugs: 
 *
-* @author Sean Rowland
+* @author Sean Rowland, Michael Leiby
 * @date date
 */
 
@@ -83,7 +83,14 @@ public class Point implements Comparable<Point>
 	 */
 	public static int LexicographicOrdering(Point p1, Point p2)
 	{
-		// TODO
+
+		if(p1.getX() > p2.getX()) return 1;
+		else if(p1.getX() < p2.getX()) return -1;
+		
+		else if(p1.getY() > p2.getY()) return 1;
+		else if(p1.getY() < p2.getY()) return -1;
+		
+		return 0;
 	}
 
 	@Override
@@ -97,6 +104,8 @@ public class Point implements Comparable<Point>
 	@Override
 	public boolean equals(Object obj)
 	{
-        // TODO
+		if(!(obj instanceof Point)) return false;
+		
+        return compareTo((Point)obj) == 0;
 	}
 }
