@@ -108,4 +108,9 @@ public class Point implements Comparable<Point>
 		
         return compareTo((Point)obj) == 0;
 	}
+	
+	public String toString()
+	{
+		return _name + "(_x 
+	}
 }

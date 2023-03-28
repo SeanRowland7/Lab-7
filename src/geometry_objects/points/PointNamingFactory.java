@@ -44,7 +44,7 @@ public class PointNamingFactory
 
 	public PointNamingFactory()
 	{
-		// TODO
+		_database = new LinkedHashMap<Point, Point>();
 	}
 
 	/**
@@ -54,7 +54,13 @@ public class PointNamingFactory
 	 */
 	public PointNamingFactory(List<Point> points)
 	{
-		// TODO
+		_database = new LinkedHashMap<Point, Point>();
+		
+		for(Point p : points)
+		{
+			// Add each point to the database.
+			put(p);
+		}
 	}
 
 	/**
@@ -68,6 +74,10 @@ public class PointNamingFactory
 	 */
 	public Point put(Point pt)
 	{
+		// If the point has a name call put(name, x, y) with its name
+		if(pt.isUnnamed()) return put(pt.getName(), pt.getX(), pt.getY());
+	
+		// Otherwise call put(x, y) without a name
 		return put(pt.getX(), pt.getY());
 	}
 
@@ -83,7 +93,8 @@ public class PointNamingFactory
 	 */
 	public Point put(double x, double y)
 	{
-		return add( , x, y);
+		// Call put(name, x, y) with a generated name.
+		return put(getCurrentName(), x, y);
 	}
 
 	/**
@@ -106,7 +117,10 @@ public class PointNamingFactory
 	 */
 	public Point put(String name, double x, double y)
 	{
-		// TODO
+		Point point = new Point(name, x, y);
+		if(contains(point));
+		_database.put(point, point);
+		return point;
 	}    
 
 	/**
@@ -116,13 +130,16 @@ public class PointNamingFactory
 	 * @param y
 	 * @return stored database Object corresponding to (x, y) 
 	 */
-	public Point get(double x, double y)
-	{
-		// TODO
-	}	
+	public Point get(double x, double y) { return get(new Point(x, y)); }	
+	
 	public Point get(Point pt)
 	{
-		// TODO
+		for(Point point : getAllPoints())
+		{
+			if(point.equals(pt)) return point;
+		}
+		
+		return null;
 	}
 
 	/**
@@ -130,8 +147,8 @@ public class PointNamingFactory
 	 * @param y -- single coordinate
 	 * @return simple containment; no updating
 	 */
-	public boolean contains(double x, double y) { /* TODO */ }
-	public boolean contains(Point p) { /* TODO */ }
+	public boolean contains(double x, double y) { return contains(new Point(x, y)); }
+	public boolean contains(Point p) { return getAllPoints().contains(p); }
 
 	/**
 	 * Constructs the next (complete with prefix) generated name.
@@ -144,7 +161,9 @@ public class PointNamingFactory
 	 */
 	private String getCurrentName()
 	{
-        // TODO
+        String currentName = _PREFIX +_currentName;
+		updateName();
+		return currentName;
 	}
 
 	/**
@@ -153,23 +172,33 @@ public class PointNamingFactory
 	 */
 	private void updateName()
 	{
-        if( _currentName.charAt(0) != 'Z') 
+		// Save the current letter associated with the name and then erase the name.
+		char letter = _currentName.charAt(0);
+		_currentName = "";
+		
+		// If Z has not been reached, advance to the next letter and add the current number of characters.
+        if(letter != END_LETTER) 
         {
-        	//update
+        	letter++;
+        	
+        	for(int i = 1; i <= _numLetters; i++)
+        		_currentName += letter;
+        	
         }
-        else()
+        else
         {
-        	num
+        	// Once Z is reached, reset to letter A and add an extra letter.
+        	_numLetters++;
+        	
+        	for(int i = 1; i <= _numLetters; i++)
+        		_currentName += START_LETTER;
         }
 	}
 
 	/**
 	 * @return The entire database of points.
 	 */
-	public  Set<Point> getAllPoints()
-	{
-        // TODO
-	}
+	public  Set<Point> getAllPoints() { return _database.keySet(); }
 
 	public void clear() { _database.clear(); }
 	public int size() { return _database.size(); }
@@ -177,6 +206,13 @@ public class PointNamingFactory
 	@Override
 	public String toString()
 	{
-        // TODO
+        String sb = "";
+   
+        for(Point point : getAllPoints())
+        {
+        	sb += point.toString() + "\n";
+        }
+        
+        return sb;
 	}
 }
