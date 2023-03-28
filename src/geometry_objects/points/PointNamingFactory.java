@@ -1,5 +1,8 @@
 /**
-* Description
+* Given a pair of coordinates; generate a unique name for it;
+* return that point object.
+*
+* Names go from A..Z..AA..ZZ..AAA...ZZZ  (a name such as ABA does not occur)
 *
 * <p>Bugs: 
 *
@@ -14,12 +17,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-/*
- * Given a pair of coordinates; generate a unique name for it;
- * return that point object.
- *
- * Names go from A..Z..AA..ZZ..AAA...ZZZ  (a name such as ABA does not occur)
- */
 public class PointNamingFactory
 {
 	// Prefix associated with each generated name so those names are easily distinguishable

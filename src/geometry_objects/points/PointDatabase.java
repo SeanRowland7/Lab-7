@@ -1,5 +1,11 @@
 /**
-* Description
+* This class represents a bi-directional database of points.
+ * 
+ * We can lookup a point given:
+ *   (a) coordinates --> name
+ *   (b) name --> coordinates
+ * 
+ * This is a Decorator class with the PointNamingFactory in the background
 *
 * <p>Bugs: 
 *
@@ -13,17 +19,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
-/**
- * This class represents a bi-directional database of points.
- * 
- * We can lookup a point given:
- *   (a) coordinates --> name
- *   (b) name --> coordinates
- * 
- * This is a Decorator class with the PointNamingFactory in the background
- * 
- * @author xxx
- */
 public class PointDatabase
 {
 	//
@@ -37,12 +32,12 @@ public class PointDatabase
     
 	public PointDatabase()
 	{
-        // TODO
+		this(new ArrayList<Point>());
 	}
 
 	public PointDatabase(List<Point> points)
 	{
-        // TODO
+        _factory = new PointNamingFactory(points);
 	}
 
 	public int size() { return _factory.size(); }
@@ -52,7 +47,7 @@ public class PointDatabase
 	 */
 	public void put(String name, double x, double y)
 	{
-        // TODO
+        _factory.put(name, x, y);
 	}
 
 	/**
@@ -63,11 +58,12 @@ public class PointDatabase
 	 */
 	public String getName(double x, double y)
 	{
-        // TODO
+        return _factory.get(x, y)._name;
 	}
+	
 	public String getName(Point pt)
 	{
-        // TODO
+		return _factory.get(pt)._name;
 	}
 
 	/**

@@ -1,5 +1,7 @@
 /**
-* Description
+* A 2D Point (x, y) only.
+* 
+* Points are ordered lexicographically (thus implementing the Comparable interface)
 *
 * <p>Bugs: 
 *
@@ -11,13 +13,6 @@ package geometry_objects.points;
 
 import utilities.math.MathUtilities;
 
-/**
- * A 2D Point (x, y) only.
- * 
- * Points are ordered lexicographically (thus implementing the Comparable interface)
- * 
- * @author xxx
- */
 public class Point implements Comparable<Point>
 {
 	public static final String ANONYMOUS = "__UNNAMED";
