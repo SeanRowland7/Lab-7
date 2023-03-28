@@ -3,7 +3,7 @@
 *
 * <p>Bugs: 
 *
-* @author author
+* @author Sean Rowland
 * @date date
 */
 
