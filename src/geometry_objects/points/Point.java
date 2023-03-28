@@ -1,4 +1,3 @@
-
 package geometry_objects.points;
 
 import utilities.math.MathUtilities;
