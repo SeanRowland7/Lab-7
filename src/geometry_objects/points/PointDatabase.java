@@ -74,7 +74,12 @@ public class PointDatabase
 	 */
 	public Point getPoint(String name)
 	{
-        // TODO
+        Set<Point> s = getPoints();
+        for (Point p : s) {
+        	if (p._name.equals(name)) return p;
+        }
+        
+        return null;
 	}
 
 	/**
@@ -86,7 +91,7 @@ public class PointDatabase
 	 */
 	public Point getPoint(Point pt)
 	{
-        // TODO
+        return _factory.get(pt);
 	}
 
 	/**
@@ -97,6 +102,6 @@ public class PointDatabase
 	 */
 	public Point getPoint(double x, double y)
 	{
-        // TODO
+        return _factory.get(x, y);
 	}
 }
