@@ -68,7 +68,7 @@ public class PointNamingFactory
 	 */
 	public Point put(Point pt)
 	{
-		// TODO
+		return put(pt.getX(), pt.getY());
 	}
 
 	/**
