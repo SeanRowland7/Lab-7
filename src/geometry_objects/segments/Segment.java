@@ -1,5 +1,6 @@
-package geometry_objects;
+package geometry_objects.segments;
 
+import geometry_objects.GeometricObject;
 import geometry_objects.points.Point;
 import utilities.math.MathUtilities;
 import utilities.math.analytic_geometry.GeometryUtilities;

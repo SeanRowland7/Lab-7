@@ -83,7 +83,7 @@ public class PointNamingFactory
 	 */
 	public Point put(double x, double y)
 	{
-		// TODO
+		return add( , x, y);
 	}
 
 	/**
@@ -153,7 +153,14 @@ public class PointNamingFactory
 	 */
 	private void updateName()
 	{
-        // TODO
+        if( _currentName.charAt(0) != 'Z') 
+        {
+        	//update
+        }
+        else()
+        {
+        	num
+        }
 	}
 
 	/**

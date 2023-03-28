@@ -8,7 +8,9 @@ class PointNamingFactoryTest {
 
 	@Test
 	void test() {
-		fail("Not yet implemented");
+		char x = 'A';
+		x++;
+		
 	}
 
 }
