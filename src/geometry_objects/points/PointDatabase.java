@@ -1,3 +1,12 @@
+/**
+* Description
+*
+* <p>Bugs: 
+*
+* @author author
+* @date date
+*/
+
 package geometry_objects.points;
 
 import java.util.ArrayList;
