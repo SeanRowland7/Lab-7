@@ -3,7 +3,7 @@
 *
 * <p>Bugs: 
 *
-* @author Michael Leiby
+* @author Michael Leiby, Sean Rowland
 * @date date
 */
 
