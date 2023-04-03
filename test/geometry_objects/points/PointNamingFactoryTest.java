@@ -2,7 +2,7 @@
 * Tests for the PointNamingFactory class
 *
 * @author Michael Leiby, Sean Rowland
-* @date 4 April 2023
+* @date 3 April 2023
 */
 
 package geometry_objects.points;

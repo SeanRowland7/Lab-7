@@ -4,7 +4,7 @@
 * <p>Bugs: 
 *
 * @author Michael Leiby, Sean Rowland
-* @date date
+* @date april 3 2023
 */
 
 package input;
@@ -56,7 +56,6 @@ public class InputFacade
 	 * @param fig -- a populated FigureNode object corresponding to a geometry figure
 	 * @return a point database and a set of segments
 	 */
-
 	public static Map.Entry<PointDatabase, Set<Segment>> toGeometryRepresentation(FigureNode fig)
 	{
 		
@@ -75,7 +74,6 @@ public class InputFacade
 		
 		return new AbstractMap.SimpleEntry<PointDatabase, Set<Segment>>(pointDatabase, segments);
 	}
-
     
 	private static Segment convertToGeometricSegment(SegmentNode segmentNode)
 	{
@@ -84,18 +82,9 @@ public class InputFacade
 		
 		return new Segment(p1, p2);
 	}
-	
-	
+		
 	private static Point convertToGeometricPoint(PointNode pointNode)
 	{
 		return new Point(pointNode.getName(), pointNode.getX(), pointNode.getY());
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 }

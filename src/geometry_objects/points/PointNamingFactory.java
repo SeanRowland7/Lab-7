@@ -185,6 +185,7 @@ public class PointNamingFactory
         		_currentName += letter;
         	
         }
+        
         else
         {
         	// Once Z is reached, reset to letter A and add an extra letter.
