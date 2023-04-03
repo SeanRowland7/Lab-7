@@ -12,6 +12,8 @@ package input;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.util.AbstractMap;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -23,7 +25,9 @@ import input.builder.GeometryBuilder;
 import input.components.ComponentNode;
 import input.components.FigureNode;
 import input.components.point.PointNode;
+import input.components.point.PointNodeDatabase;
 import input.components.segment.SegmentNode;
+import input.components.segment.SegmentNodeDatabase;
 import input.parser.JSONParser;
 
 public class InputFacade
@@ -50,9 +54,26 @@ public class InputFacade
 	 * @param fig -- a populated FigureNode object corresponding to a geometry figure
 	 * @return a point database and a set of segments
 	 */
-	public static Map.Entry<PointDatabase, Set<Segment>> toGeometryRepresentation(FigureNode fig)
-	{
-		// TODO
+	public static Map.Entry<PointDatabase, Set<Segment>> toGeometryRepresentation(FigureNode fig) {
+		Map<PointDatabase, Set<Segment>> figure = new HashMap<>();
+		
+		PointNodeDatabase p = fig.getPointsDatabase();	
+		Set<PointNode> pn = p.getPoints();
+		
+		PointDatabase pd = new PointDatabase();
+		for (PointNode ptnd : pn) {
+			pd.put(ptnd.getName(), ptnd.getX(), ptnd.getY());
+		}
+		
+		
+		SegmentNodeDatabase s = fig.getSegments();
+		Map<PointNode, Set<PointNode>> MapPN = s.getAdjList();
+		
+		Set<Segment> seg = new HashSet<Segment>();
+		for ()
+			
+			
+		
 	}
 
     //	
