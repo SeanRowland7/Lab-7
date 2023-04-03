@@ -43,7 +43,9 @@ public class InputFacade
 	 */
 	public static FigureNode extractFigure(String filepath)
 	{
-        // TODO
+        JSONParser parser = new JSONParser(new GeometryBuilder());
+        
+        return (FigureNode) parser.parse(filepath);
 	}
 	
 	/**
@@ -54,29 +56,46 @@ public class InputFacade
 	 * @param fig -- a populated FigureNode object corresponding to a geometry figure
 	 * @return a point database and a set of segments
 	 */
-	public static Map.Entry<PointDatabase, Set<Segment>> toGeometryRepresentation(FigureNode fig) {
-		Map<PointDatabase, Set<Segment>> figure = new HashMap<>();
+
+	public static Map.Entry<PointDatabase, Set<Segment>> toGeometryRepresentation(FigureNode fig)
+	{
 		
-		PointNodeDatabase p = fig.getPointsDatabase();	
-		Set<PointNode> pn = p.getPoints();
-		
-		PointDatabase pd = new PointDatabase();
-		for (PointNode ptnd : pn) {
-			pd.put(ptnd.getName(), ptnd.getX(), ptnd.getY());
+		PointDatabase pointDatabase = new PointDatabase();
+		LinkedHashSet<Segment> segments = new LinkedHashSet<Segment>();
+
+		for(PointNode pointNode : fig.getPointsDatabase().getPoints())
+		{
+			pointDatabase.put(pointNode.getName(), pointNode.getX(), pointNode.getY());
 		}
 		
+		for(SegmentNode segmentNode : fig.getSegments().asUniqueSegmentList())
+		{
+			segments.add(convertToGeometricSegment(segmentNode));
+		}
 		
-		SegmentNodeDatabase s = fig.getSegments();
-		Map<PointNode, Set<PointNode>> MapPN = s.getAdjList();
-		
-		Set<Segment> seg = new HashSet<Segment>();
-		for ()
-			
-			
-		
+		return new AbstractMap.SimpleEntry<PointDatabase, Set<Segment>>(pointDatabase, segments);
 	}
 
-    //	
-	// TODO: implement other support methods to facilitate the toGeometryRepresentation method
-	//
+    
+	private static Segment convertToGeometricSegment(SegmentNode segmentNode)
+	{
+		Point p1 = convertToGeometricPoint(segmentNode.getPoint1());
+		Point p2 = convertToGeometricPoint(segmentNode.getPoint2());
+		
+		return new Segment(p1, p2);
+	}
+	
+	
+	private static Point convertToGeometricPoint(PointNode pointNode)
+	{
+		return new Point(pointNode.getName(), pointNode.getX(), pointNode.getY());
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
