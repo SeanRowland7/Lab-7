@@ -9,11 +9,9 @@
 
 package input;
 
-import static org.junit.jupiter.api.Assertions.*;
+
 
 import java.util.AbstractMap;
-import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Map;
 import java.util.Set;
@@ -22,12 +20,9 @@ import geometry_objects.points.Point;
 import geometry_objects.points.PointDatabase;
 import geometry_objects.segments.Segment;
 import input.builder.GeometryBuilder;
-import input.components.ComponentNode;
 import input.components.FigureNode;
 import input.components.point.PointNode;
-import input.components.point.PointNodeDatabase;
 import input.components.segment.SegmentNode;
-import input.components.segment.SegmentNodeDatabase;
 import input.parser.JSONParser;
 
 public class InputFacade
@@ -60,17 +55,20 @@ public class InputFacade
 	{
 		
 		PointDatabase pointDatabase = new PointDatabase();
-		LinkedHashSet<Segment> segments = new LinkedHashSet<Segment>();
-
+		
 		for(PointNode pointNode : fig.getPointsDatabase().getPoints())
 		{
 			pointDatabase.put(pointNode.getName(), pointNode.getX(), pointNode.getY());
 		}
 		
+		
+		LinkedHashSet<Segment> segments = new LinkedHashSet<Segment>();
+		
 		for(SegmentNode segmentNode : fig.getSegments().asUniqueSegmentList())
 		{
 			segments.add(convertToGeometricSegment(segmentNode));
 		}
+		
 		
 		return new AbstractMap.SimpleEntry<PointDatabase, Set<Segment>>(pointDatabase, segments);
 	}
