@@ -14,8 +14,12 @@ import org.junit.jupiter.api.Test;
 class InputFacadeTest {
 
 	@Test
-	void test() {
+	void testExtractFigure() {
 		fail("Not yet implemented");
 	}
 
+	@Test
+	void testToGeometryRepresentation() {
+		fail("Not yet implemented");
+	}
 }
